@@ -1,12 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <title>My Product Cart</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 </head>
+<style>
+  img{
+    height :270px;
+  }
+</style>
 <body>
-    <h1>Card page</h1>
+
+  <div class="container">
+
+    <h1 class="my-4">My Product Cart</h1>
+
+    <div class="row">
+      
+      <div class="col-md-6">
+        <div class="card mb-4">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4IPgFfLqCcp7yVknfumCJ3he7rGTKQeZs1mP3QP3T&s" class="card-img-top" alt="Product 1 Image">
+          <div class="card-body">
+            <h5 class="card-title">Product 1 Name</h5>
+            <p class="card-text">Product 1 description goes here.</p>
+            <p class="card-text"><strong>Price: $19.99</strong></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">-</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">1</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">+</button>
+              </div>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProductModal1">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Add more product cards here -->
+      
+      <div class="col-md-6">
+        <div class="card mb-4">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHxlbnwwfHwwfHw%3D&w=1000&q=80" class="card-img-top" alt="Product 2 Image">
+          <div class="card-body">
+            <h5 class="card-title">Product 2 Name</h5>
+            <p class="card-text">Product 2 description goes here.</p>
+            <p class="card-text"><strong>Price: $29.99</strong></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">-</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">2</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">+</button>
+
+              </div>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProductModal1">
+                Delete
+              </button>
+          </div>
+        </div>
+      </div>
+      </div>
 </body>
 </html>
