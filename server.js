@@ -1,3 +1,4 @@
+const express = require("express")
 const { app } = require("./index");
 const bodyParser = require("body-parser");
 const multer = require("multer");
@@ -12,10 +13,15 @@ const checkoutRoute = require("./src/routes/checkout");
 const cardRoute = require("./src/routes/card");
 const APIRouter = require("./src/routes/API/main");
 
-
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(multer().array());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname, "styles","style_products","fonts" )))
+// app.use(express.static(path.join(__dirname, "styles","style_products","images" )))
+// app.use(express.static(path.join(__dirname, "styles","style_products","js" )))
 
 app.use("/users", UsersRoute);
 app.use("/signup", signupRoute);
