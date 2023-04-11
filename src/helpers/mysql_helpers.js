@@ -1,4 +1,4 @@
-const con = require("../../mysql");
+const con = require("../../sequelize");
 
 
 module.exports = {

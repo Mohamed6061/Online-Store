@@ -1,5 +1,5 @@
 const { express } = require("../../../../index");
-const poolPromised = require(".././../../../mysql")
+const poolPromised = require("../../../../sequelize")
 const userAPIRouter = express.Router();
 const { query_runner, query_error } = require("../../../helpers/mysql_helpers");
 
