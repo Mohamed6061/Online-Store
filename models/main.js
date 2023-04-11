@@ -117,21 +117,21 @@ orderitems.belongsTo(Product);
 orders.hasMany(orderitems);
 orderitems.belongsTo(orders);
 
-User.create({
-    name: 'm0000',
-    email: 'moe00@example.com',
-    password: 'mypassword'
-})
-Product.create({
-    name: 'pr123',
-    price : 122.42
-})
-orderitems.create({
-    quantity: 77,
-    price : 54.42
-})
-orders.create({
-    status : "No order"
-})
+// User.create({
+//     name: 'm0000',
+//     email: 'moe00@example.com',
+//     password: 'mypassword'
+// })
+// Product.create({
+//     name: 'pr123',
+//     price : 122.42
+// })
+// orderitems.create({
+//     quantity: 77,
+//     price : 54.42
+// })
+// orders.create({
+//     status : "No order"
+// })
 
 module.exports = {User , Product , Order , orderitems};
