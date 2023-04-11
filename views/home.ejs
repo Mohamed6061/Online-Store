@@ -1,24 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Homeware Products</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="style.css">
-</head>
-<style>
-  img{
-  height :270px;
-  width:100%;
-}
-.row > div{
-  height: 500px;
-}
-</style>
-<body>
+<%- include('./Partials/head.ejs') %>
+
 
   <!-- Navigation Bar -->
   <nav class="navbar navbar-inverse">
@@ -156,13 +137,6 @@
             </div>
             </div>
               </section>
-              <!-- Footer -->
-              <footer class="container-fluid text-center">
-                <p>&copy; 2023 Homeware Products. All rights reserved.</p>
-              </footer>
-              <!-- jQuery -->
-              <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-              <!-- Bootstrap JavaScript -->
-              <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-            </body>
-            </html>
+
+              <%- include('./Partials/foot.ejs') %>
+            

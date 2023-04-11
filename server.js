@@ -17,11 +17,8 @@ app.use(bodyParser.json());
 app.use(multer().array());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.use(express.static("public"));
+
 app.use(express.static(path.join(__dirname, "public")));
-// app.use(express.static(path.join(__dirname, "styles","style_products","fonts" )))
-// app.use(express.static(path.join(__dirname, "styles","style_products","images" )))
-// app.use(express.static(path.join(__dirname, "styles","style_products","js" )))
 
 app.use("/users", UsersRoute);
 app.use("/signup", signupRoute);
@@ -34,7 +31,7 @@ app.use("/card", cardRoute);
 app.use("/api", APIRouter);
 
 app.get("/", (req, res) => {
-        res.render("home");
+        res.render("home", { page_title: "Home" });
 })
 
 app.set("view engine", 'ejs');
