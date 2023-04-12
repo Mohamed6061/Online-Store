@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/users", UsersRoute);
 app.use("/signup", signupRoute);
 app.use("/products", productsRoute);
-app.use("/product_detail", product_detailRoute);
+app.use("/product_details", product_detailRoute);
 app.use("/login", loginRoute);
 app.use("/home", homeRoute);
 app.use("/checkout", checkoutRoute);

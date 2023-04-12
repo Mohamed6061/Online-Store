@@ -94,6 +94,14 @@ const orderitems = sequelize.define('orderitems', {
     timestamps: false,
     tableName: "orderitems"
 });
+orderitems.sync({ alter: true }) // creates the table if it doesn't exist
+    .then(() => {
+        console.log('orderitems table created');
+    })
+    .catch((error) => {
+        console.error('Error creating orderitems table:', error);
+    });
+
 /////
 const orders = sequelize.define('orders', {
     id: { 
@@ -109,6 +117,14 @@ const orders = sequelize.define('orders', {
     timestamps: false,
     tableName: "orders"
 });
+orders.sync({ alter: true }) // creates the table if it doesn't exist
+    .then(() => {
+        console.log('orders table created');
+    })
+    .catch((error) => {
+        console.error('Error creating orders table:', error);
+    });
+
 
 User.hasMany(orders);
 orders.belongsTo(User);
@@ -134,4 +150,4 @@ orderitems.belongsTo(orders);
 //     status : "No order"
 // })
 
-module.exports = {User , Product , Order , orderitems};
+module.exports = {User , Product , orders , orderitems};

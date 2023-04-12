@@ -1,12 +1,15 @@
 const { express } = require("../../../../index");
-const poolPromised = require("../../../../sequelize")
-const usersAPIRouter = express.Router();
-const { query_runner, query_error } = require("../../../helpers/mysql_helpers");
+const productAPIRouter = express.Router();
+const { getAll  } = require('../../../helpers/sequelizeHelpers');
+const {Product} = require('../../../../models/main');
 
-usersAPIRouter.get("/", (req, res) => {
-        // query_runner("SELECT * FROM author")
-        //         .then(([rows]) => res.json(rows))
-        //         .catch((err) => res.json(query_error(err.message)));
+productAPIRouter.get("/", async (req, res) => {
+        try {
+                const allproducts = await getAll(Product);
+                res.send(allproducts);
+        } catch (error) {
+                console.error(error.message);
+        }
 });
 
-module.exports = usersAPIRouter;
+module.exports = productAPIRouter;
