@@ -13,10 +13,9 @@ const checkoutRoute = require("./src/routes/checkout");
 const cardRoute = require("./src/routes/card");
 const APIRouter = require("./src/routes/API/main");
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(multer().array());
-app.use(bodyParser.urlencoded({ extended: true }));
-
 
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -32,7 +31,11 @@ app.use("/api", APIRouter);
 
 app.get("/", (req, res) => {
         res.render("home", { page_title: "Home" });
-})
+});
+
+app.get("*", (req, res) => {
+        res.status(404).send("Page Not Found");s
+});
 
 app.set("view engine", 'ejs');
 app.set("views", path.join(__dirname, 'views'));

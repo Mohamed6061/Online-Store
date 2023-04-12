@@ -139,8 +139,10 @@ orderitems.belongsTo(orders);
 //     password: 'mypassword'
 // })
 // Product.create({
-//     name: 'pr123',
-//     price : 122.42
+//     name: 'Product Five',
+//     description : "Nulla facilisi. Nullam vel dolor ultrices, malesuada nisi eu, bibendum purus. Sed mollis in magna vel auctor. Sed euismod, eros a porttitor hendrerit, lectus purus ullamcorper sapien",
+//     price : 7655.53,
+//     image : "https://images.pexels.com/photos/341523/pexels-photo-341523.jpeg?auto=compress&cs=tinysrgb&w=600"
 // })
 // orderitems.create({
 //     quantity: 77,
@@ -149,5 +151,22 @@ orderitems.belongsTo(orders);
 // orders.create({
 //     status : "No order"
 // })
-
+// User.create({
+//     name: 'm000',
+//     email: 'moe0@example.com',
+//     password: '1234'
+// })
+// Product.create({
+//     name: 'Product Five',
+//     description : "Nulla facilisi. Nullam vel dolor ultrices, malesuada nisi eu, bibendum purus. Sed mollis in magna vel auctor. Sed euismod, eros a porttitor hendrerit, lectus purus ullamcorper sapien",
+//     price : 323.53,
+//     image : "https://images.pexels.com/photos/341523/pexels-photo-341523.jpeg?auto=compress&cs=tinysrgb&w=600"
+// })
+// orderitems.create({
+//     quantity: 77,
+//     price : 54.42
+// })
+// orders.create({
+//     status : "No order"
+// })
 module.exports = {User , Product , orders , orderitems};

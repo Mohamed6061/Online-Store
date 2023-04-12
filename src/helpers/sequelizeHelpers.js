@@ -56,9 +56,31 @@ const getAll = async (model) => {
     return instances;
 };
 
+const getOne = async (model, where) => {
+    try {
+        const result = await model.findOne({ where });
+        return result;
+    } catch (error) {
+        throw error;
+    }
+};
+
+const create = async (model, data) => {
+    try {
+        const createdInstance = await model.create(data);
+        return createdInstance;
+    } catch (error) {
+        console.error(error);
+        throw new Error("Failed to create instance");
+    }
+};
+
+
 module.exports = {
     getById,
     updateById,
     deleteById,
     getAll,
+    getOne,
+    create
 };
