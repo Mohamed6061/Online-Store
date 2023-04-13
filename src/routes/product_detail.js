@@ -4,7 +4,7 @@ const { getOne } = require("../helpers/sequelizeHelpers")
 const { Product } = require('../../models/main');
 
 
-UsersRoute.get('/products/:id', async (req, res) => {
+UsersRoute.post('/products/:id', async (req, res) => {
   const productId = req.params.id;
 try{
   getOne(Product ,productId)

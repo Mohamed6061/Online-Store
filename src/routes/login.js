@@ -2,7 +2,7 @@ const { express } = require("../../index");
 const UsersRoute = express.Router();
 const { getOne } = require("../helpers/sequelizeHelpers")
 const { User } = require('../../models/main');
-UsersRouteapppost('/login',(req, res) => {
+UsersRoute.post('/login',(req, res) => {
   const { email, password } = req.body;
   try {
 getOne(User ,email ,password)
