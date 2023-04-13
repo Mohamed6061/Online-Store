@@ -8,7 +8,7 @@ UsersRoute.post("/", async (req, res) => {
   try {
   const data = await req.body
   create(User ,data)
-  res.render("products", {products, page_title: "Products" });
+  res.render("signup", {signup, page_title: "Sign Up" });
   } catch (error) {
   console.error(error.message);
   }
