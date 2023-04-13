@@ -19,17 +19,15 @@ productAPIRouter.get("/", async (req, res) => {
     }
 });
 
-productAPIRouter.post("/", async (req, res) => {
-    console.log(req.body)
-    res.send(req.body)
-    // try {
-    //         const { name, description, price, image } = req.body;
-    //         const newProduct = await create(Product, { name, description, price, image });
-    //         res.status(201).send(newProduct);
-    // } catch (error) {
-    //         console.error(error.message);
-    //         res.status(500).send("Server Error");
-    // }
+productAPIRouter.post("/",  async (req, res) => {
+    try {
+            const { name, description, price, image } = req.body;
+            const newProduct = await create(Product, { name, description, price, image });
+            res.status(201).send(newProduct);
+    } catch (error) {
+            console.error(error.message);
+            res.status(500).send("Server Error");
+    }
 });
 
 module.exports = productAPIRouter;
