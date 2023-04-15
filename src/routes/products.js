@@ -8,6 +8,7 @@ productAPIRouter.get("/", async (req, res) => {
     try {
         const allProducts = await getAll(Product);
         var products = allProducts.map(product => ({
+        id : product.id,
         name: product.name,
         price: product.price,
         description: product.description,

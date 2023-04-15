@@ -13,13 +13,6 @@
             </div>
         </div>
     </div>
-    <!-- <h1>Products</h1>
-    <ul>
-        <% products.forEach(function(product) { %>
-            <li><%= product.name %>: <%= product.price %> - <%= product.description %></li>
-        <% }); %>
-    </ul> -->
-    
     <div class="products">
         <div class="container">
             <div class="row">
@@ -53,6 +46,7 @@
                                             <li><i class="fa fa-star"></i></li>
                                             <li><i class="fa fa-star"></i></li>
                                         </ul>
+                                        <a href="/products/<%= product.id %>">View Details</a>
                                         <span>Reviews (12)</span>
                                     </div>
                                 </div>
