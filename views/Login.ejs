@@ -229,7 +229,7 @@
     <div class="container right-panel-active">
         <!-- Sign Up -->
         <div class="container__form container--signup">
-            <form action="/users" class="form" method="POST" id="form1">
+            <form action="/signup" class="form" method="POST" id="form1">
                 <h2 class="form__title">Sign Up</h2>
                 <input type="text" placeholder="User" name="name" class="input" />
                 <input type="email" placeholder="Email" name="email" class="input" />
@@ -243,8 +243,8 @@
         <div class="container__form container--signin">
             <form action="/login" class="form" method="POST" id="form2">
                 <h2 class="form__title">Sign In</h2>
-                <input type="email" placeholder="Email" class="input" />
-                <input type="password" placeholder="Password" class="input" />
+                <input type="email" placeholder="Email" name="email" class="input" />
+                <input type="password" placeholder="Password" name="password" class="input" />
                 <a href="#" class="link">Forgot your password?</a>
                 <button class="btn" type="submit" >Sign In</button>
             </form>
