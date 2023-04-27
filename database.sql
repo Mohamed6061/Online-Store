@@ -1,5 +1,6 @@
 -- cat database.sql | C:\xampp\mysql\bin\mysql.exe -uroot ==> run this command
 -- Create the database
+-- Drop DATABASE online_store;
 CREATE DATABASE online_store;
 
 -- Use the database
@@ -10,7 +11,7 @@ CREATE TABLE Users (
     id INT NOT NULL AUTO_INCREMENT ,
     name VARCHAR(50) NOT NULL UNIQUE,
     email VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(50) NOT NULL ,
+    password VARCHAR(150) NOT NULL ,
     PRIMARY KEY (id)
 );
 
@@ -40,6 +41,6 @@ CREATE TABLE OrderItems (
     quantity INT NOT NULL,
     price DECIMAL(10,2) NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (orderId) REFERENCES Orders(id),
-    FOREIGN KEY (productId) REFERENCES Products(id)
+    FOREIGN KEY (orderId) REFERENCES orders(id),
+    FOREIGN KEY (productId) REFERENCES products(id)
 );

@@ -20,7 +20,7 @@ const User = sequelize.define('User', {
         unique: true
     },
     password: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(150),
         allowNull: false
     }
 }, {
@@ -82,6 +82,20 @@ const orderitems = sequelize.define('orderitems', {
         primaryKey: true,
         autoIncrement: true
     },
+    orderId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'orders',
+            key: 'id'
+        }
+    },
+    productId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'products',
+            key: 'id'
+        }
+    },
     quantity: {
         type: DataTypes.INTEGER,
         allowNull: false
@@ -94,6 +108,7 @@ const orderitems = sequelize.define('orderitems', {
     timestamps: false,
     tableName: "orderitems"
 });
+
 orderitems.sync({ alter: true }) // creates the table if it doesn't exist
     .then(() => {
         console.log('orderitems table created');
@@ -108,6 +123,9 @@ const orders = sequelize.define('orders', {
         type: DataTypes.INTEGER, 
         primaryKey: true, 
         autoIncrement: true 
+    },
+    userId: { 
+        type: DataTypes.INTEGER
     },
     status: {
         type: DataTypes.STRING(20),
@@ -133,40 +151,4 @@ orderitems.belongsTo(Product);
 orders.hasMany(orderitems);
 orderitems.belongsTo(orders);
 
-// User.create({
-//     name: 'm0000',
-//     email: 'moe00@example.com',
-//     password: 'mypassword'
-// })
-// Product.create({
-//     name: 'Product Five',
-//     description : "Nulla facilisi. Nullam vel dolor ultrices, malesuada nisi eu, bibendum purus. Sed mollis in magna vel auctor. Sed euismod, eros a porttitor hendrerit, lectus purus ullamcorper sapien",
-//     price : 7655.53,
-//     image : "https://images.pexels.com/photos/341523/pexels-photo-341523.jpeg?auto=compress&cs=tinysrgb&w=600"
-// })
-// orderitems.create({
-//     quantity: 77,
-//     price : 54.42
-// })
-// orders.create({
-//     status : "No order"
-// })
-// User.create({
-//     name: 'm000',
-//     email: 'moe0@example.com',
-//     password: '1234'
-// })
-// Product.create({
-//     name: 'Product Five',
-//     description : "Nulla facilisi. Nullam vel dolor ultrices, malesuada nisi eu, bibendum purus. Sed mollis in magna vel auctor. Sed euismod, eros a porttitor hendrerit, lectus purus ullamcorper sapien",
-//     price : 323.53,
-//     image : "https://images.pexels.com/photos/341523/pexels-photo-341523.jpeg?auto=compress&cs=tinysrgb&w=600"
-// })
-// orderitems.create({
-//     quantity: 77,
-//     price : 54.42
-// })
-// orders.create({
-//     status : "No order"
-// })
 module.exports = {User , Product , orders , orderitems};

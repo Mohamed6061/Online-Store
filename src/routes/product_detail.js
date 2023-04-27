@@ -1,6 +1,5 @@
 const { express } = require("../../index");
 const UsersRoute = express.Router();
-// const { getOne } = require("../helpers/sequelizeHelpers")
 const { Product } = require('../../models/main');
 
 UsersRoute.get('/', async (req, res) => {
