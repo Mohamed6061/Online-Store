@@ -14,23 +14,26 @@ UsersRoute.get("/", (req, res) => {
     const order_item = orderitems.findAll({
       where: { ordersId },
     });
-    res.render("checkout", { page_title: "Checkout" ,id:ordersId ,order_item });
+    console.log()
+    res.render("checkout", { page_title: "Checkout", id: ordersId, order_item });
   } catch (err) {
     console.log(err);
   }
 });
-UserRoute.post("/" ,(req,res) =>{
-const orderId = req.body 
-// find order
-try{
-const order =orders.findOne({
-  where: { orderId },
-})
-order.status = true
 
-}catch(err) {
-  console.log(err)
-}
+
+UsersRoute.post("/", (req, res) => {
+  const orderId = req.body
+  // find order
+  try {
+    const order = orders.findOne({
+      where: { orderId },
+    })
+    order.status = true
+
+  } catch (err) {
+    console.log(err)
+  }
 
 
 })
