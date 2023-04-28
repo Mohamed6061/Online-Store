@@ -1,11 +1,37 @@
 const { express } = require("../../index");
 const UsersRoute = express.Router();
-
+const { orders, orderitems, User } = require("../../models/main");
 
 UsersRoute.get("/", (req, res) => {
-        res.render("checkout", {  page_title: "Checkout" });
+  // we still have no user so we can here  imagine we have a user to get data of tabeles associate with user
 
+  try {
+    const userId = 1;
+    const orders = orders.findAll({
+      where: { userId: userId },
+    });
+    const ordersId = orders.id;
+    const order_item = orderitems.findAll({
+      where: { ordersId },
+    });
+    res.render("checkout", { page_title: "Checkout" ,id:ordersId ,order_item });
+  } catch (err) {
+    console.log(err);
+  }
 });
+UserRoute.post("/" ,(req,res) =>{
+const orderId = req.body 
+// find order
+try{
+const order =orders.findOne({
+  where: { orderId },
+})
+order.status = true
+
+}catch(err) {
+  console.log(err)
+}
 
 
+})
 module.exports = UsersRoute;
