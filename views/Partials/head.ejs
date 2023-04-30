@@ -19,6 +19,11 @@
         <%= page_title %>
     </title>
     <style>
+        .footer_logo{
+            color: white;
+            margin-right: 125px;
+            padding-bottom: 15px;
+        }
         .thumbnail img {
             height: 270px;
             width: 100%;
@@ -34,10 +39,20 @@
     color: #444;
 
   }
+  .logo{
+    width: 35px;
+    height: 30px;
+    padding-right: 10px;
+  }
   ul li a{
     color: #444;
     text-decoration: none;
     
+  }
+  .cpyryt{
+    /* margin-bottom: 200px; */
+    color: white;
+    margin-left: center;
   }
     </style>
 </head>
@@ -48,8 +63,9 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="index.html">
-                    <h2>Online <em>Clothing</em></h2>
-                </a>
+                <div class="d-flex">    <img class="logo" src="https://cdn-icons-png.flaticon.com/512/662/662177.png"/>
+                    <h2 >Online <em>Clothing</em></h2>
+                </div></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -67,9 +83,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="about.html">About Us</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="contact.html">Contact Us</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
