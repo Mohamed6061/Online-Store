@@ -29,7 +29,7 @@ UsersRoute.post("/", (req, res) => {
     const order = orders.findOne({
       where: { orderId },
     })
-    order.status = true
+    order.status = "completed"
 
   } catch (err) {
     console.log(err)
