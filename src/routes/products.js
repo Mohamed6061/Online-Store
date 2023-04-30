@@ -1,7 +1,7 @@
-// Finished File Don't edite!
 const { express } = require("../../index");
 const productAPIRouter = express.Router();
 const { Product } = require('../../models/main');
+const { getAll } = require("../../src/helpers/sequelizeHelpers");
 
 productAPIRouter.get("/", async (req, res) => {
     try {
