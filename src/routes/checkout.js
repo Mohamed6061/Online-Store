@@ -18,6 +18,7 @@ UsersRoute.get("/", async (req, res) => {
       price: OI.price
     }));
 
+    
     const allProducts = await Product.findAll();
     var products = allProducts.map(product => ({
       id: product.id,
