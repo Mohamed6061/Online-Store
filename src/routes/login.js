@@ -18,7 +18,11 @@ loginRoute.post('/', async (req, res) => {
   const passwordMatch = await bcrypt.compare(password, user.password);
   if (!passwordMatch) {
     return res.status(401).send('<script>alert("Password is invalid");location.href="/login"</script>');
-  }
+  } else(
+     req.session.userInfo = user;
+        res.send(`<script>alert("Welcome ${req.session.userInfo.name} "); window.location.href="/home";</script>`);
+      
+)
 
   res.render("home", { page_title: "Home" })
   // res.status(200).json({ message: 'Authentication successful' });
