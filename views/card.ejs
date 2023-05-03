@@ -223,4 +223,25 @@
     </div>
     </div>
 
+<script>
+    function deleteOrder(id) {
+      const deleteReq = fetch("/card/" + id, { method: "DELETE" });
+      deleteReq
+        .then((response) => {
+          if (response.status === 204) {
+            location.reload()
+            alert("Order deleted successfully");
+          } else {
+            return response.json();
+          }
+        })
+        .then((data) => {
+          if (data) {
+            console.log(data.msg);
+          }
+        })
+        .catch((err) => console.log(err.message));
+    }
+  </script>
+
     <%- include('./Partials/foot.ejs') %>
