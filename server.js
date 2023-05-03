@@ -16,6 +16,12 @@ const APIRouter = require("./src/routes/API/main");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(multer().array());
+app.use(session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+}));
 
 app.use(express.static(path.join(__dirname, "public")));
 
