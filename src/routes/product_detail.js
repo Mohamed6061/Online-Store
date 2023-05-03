@@ -15,4 +15,35 @@ UsersRoute.get('/:id', async (req, res) => {
   // res.status(200).json(product.toJSON());
 });
 
+UsersRoute.post("/", async (req, res) => {
+   try {
+      const USERId = req.session.userInfo.id;
+      const product = await Product.findOne({ where: { id: req.body.id } });
+
+      const incompleteOrder = await orders.findOne({
+         where: { status: 'Not Complete', userId: USERId }
+      });
+
+      if (incompleteOrder) {
+         var incompleteOrderId = incompleteOrder.id;
+      } else {
+         const newOrder = await orders.create({
+            status: "Not Complete",
+            userId: USERId
+         })
+         var incompleteOrderId = newOrder.id;
+      }
+
+      orderitems.create({
+         quantity: req.body.quantity[1],
+         price: product.price,
+         orderId: incompleteOrderId,
+         productId: product.id
+      })
+
+   } catch (e) {
+      console.log("error here", e)
+   }
+})
+
 module.exports = UsersRoute;
