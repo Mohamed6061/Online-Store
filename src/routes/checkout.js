@@ -17,7 +17,6 @@ UsersRoute.get("/", async (req, res) => {
       quantity: OI.quantity,
       price: OI.price
     }));
-
     
     const allProducts = await Product.findAll();
     var products = allProducts.map(product => ({
@@ -28,10 +27,12 @@ UsersRoute.get("/", async (req, res) => {
       image: product.image
     }));
     
-    res.render("checkout", { page_title: "Checkout", orderitem, products, id: order.id });
-  } else {
+    res.render("checkout", { page_title: "Checkout", orderitem, products, id: order.id, status :true });
+    
+  } 
+  else {  
     console.log("There is no orders")
-    res.render("checkout", { page_title: "Checkout" });
+    res.render("checkout", { status : false , page_title: "Checkout" });
   }
 });
 
@@ -47,4 +48,5 @@ UsersRoute.post("/:id", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 })
+
 module.exports = UsersRoute;

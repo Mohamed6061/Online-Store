@@ -6,14 +6,17 @@ const { getAll } = require("../../src/helpers/sequelizeHelpers");
 productAPIRouter.get("/", async (req, res) => {
     try {
         const allProducts = await getAll(Product);
+        
         var products = allProducts.map(product => ({
-        id : product.id,
-        name: product.name,
-        price: product.price,
-        description: product.description,
-        Image: product.image
-    })
-    )
+            id : product.id,
+            name: product.name,
+            price: product.price,
+            description: product.description,
+            Image: product.image
+        })
+        )
+        console.log("products : ")
+        console.log(products)
     res.render("products", {products, page_title: "Products" });
     } catch (error) {
     console.error(error.message);

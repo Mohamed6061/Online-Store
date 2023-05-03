@@ -37,6 +37,7 @@ UsersRoute.get("/", async (req, res) => {
             price: product.price,
             image: product.image
         }))
+        console.log(user)
 
         res.render("users", { page_title: "Account", user, allorders: forders, products });
     } catch (error) {

@@ -1,10 +1,28 @@
 <%- include('./Partials/head.ejs') %>
 
-<div class="pt-5"></div>
-<h1 class="pt-5">Product Details Page</h1>
-<h2 style="height : 100px"><%= product.name %></h2>
-<h2 style="height : 100px"><%= product.description%></h2>
-<h2 style="height : 100px"><%= product.price%></h2>
-<!-- <h2 style="height : 100px"><%= product.name %></h2> -->
+    <div class="pt-5"></div>
+    <h1 class="pt-5">Product Details Page</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-4"><img src="<%= product.image %>" /></div>
+            <div class="col-8">
+                <h2>
+                    <%= product.name %>
+                </h2>
+                <h2 style="height : 100px">
+                    <%= product.description%>
+                </h2>
+                <h2 style="height : 100px">
+                    <%= product.price%>
+                </h2>
+                <form method="post" action="/product_details">
+                    <label>How many do you want</label>
+                    <input min="1" type="number" name="quantity" />
+                    <input min="1" type="hidden" name="id"  value="<%= product.id%>"/>
+                    <input value="ENTER" type="submit" />
+                </form>
+            </div>
+        </div>
+    </div>
 
-<%- include('./Partials/foot.ejs') %>
+    <%- include('./Partials/foot.ejs') %>

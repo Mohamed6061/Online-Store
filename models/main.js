@@ -151,4 +151,5 @@ orderitems.belongsTo(Product);
 orders.hasMany(orderitems);
 orderitems.belongsTo(orders);
 
+
 module.exports = {User , Product , orders , orderitems};

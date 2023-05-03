@@ -23,7 +23,7 @@ UsersRoute.get('/', async (req, res) => {
                orderId: orderId
             }
          }).then( async orderItems => {
-            const CardProucts = orderItems.map(item => {
+            const CartProudcts = orderItems.map(item => {
                return {
                   productId: item.productId,
                   quantity: item.quantity,
@@ -39,13 +39,11 @@ UsersRoute.get('/', async (req, res) => {
                description: product.description,
                image: product.image
             }));
-
-            res.render('card', { page_title: "Card", CardProucts , Allproducts });
+            console.log(CartProudcts);
+            console.log(Allproducts)
+            res.render('card', { page_title: "Card", CartProudcts , Allproducts });
          });
-      } else {
-         console.log("Card is Empty")
-         res.status(401).send('<script>alert("Card is empty, Please go to product page to add product.");location.href="/products"</script>');
-      }
+      } 
    });
 });
 

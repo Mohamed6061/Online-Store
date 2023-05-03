@@ -1,5 +1,22 @@
 <%- include('./Partials/head.ejs') %>
-
-<h1>users page</h1>
+<style>
+    input{
+        width:250px;
+    }
+</style>
+<h1>My page</h1>
+<div class="container">
+    <br>
+    <br>
+    <!-- <br> -->
+    <form method="post">
+        <label>Username</label><br>
+        <input type="text" name="username" value="<%= user.name %>"><br>
+        <label>Email</label><br>
+        <input type="email" name="email" value="<%= user.email %>"><br>
+        <label>Do you want to change your password ?</label><br>
+        <input type="password" name="password" >
+    </form>
+</div>
 
 <%- include('./Partials/foot.ejs') %>

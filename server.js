@@ -32,7 +32,7 @@ app.use("/product_details", product_detailRoute);
 app.use("/login", loginRoute);
 app.use("/home", homeRoute);
 app.use("/checkout", checkoutRoute);
-app.use("/card", cardRoute);
+app.use("/cart", cardRoute);
 app.use("/api", APIRouter);
 
 app.get("/", (req, res) => {

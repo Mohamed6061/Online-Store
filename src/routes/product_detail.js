@@ -1,6 +1,6 @@
 const { express } = require("../../index");
 const UsersRoute = express.Router();
-const { Product } = require('../../models/main');
+const { Product ,orders, orderitems } = require('../../models/main');
 
 UsersRoute.get('/:id', async (req, res) => {
   const id = req.params.id;
@@ -17,7 +17,7 @@ UsersRoute.get('/:id', async (req, res) => {
 
 UsersRoute.post("/", async (req, res) => {
    try {
-      const USERId = req.session.userInfo.id;
+      const USERId = 1;
       const product = await Product.findOne({ where: { id: req.body.id } });
 
       const incompleteOrder = await orders.findOne({
@@ -32,15 +32,14 @@ UsersRoute.post("/", async (req, res) => {
             userId: USERId
          })
          var incompleteOrderId = newOrder.id;
-      }
-
+      }   
       orderitems.create({
-         quantity: req.body.quantity[1],
+         quantity: req.body.quantity ,
          price: product.price,
          orderId: incompleteOrderId,
          productId: product.id
       })
-
+      res.send(`<script>alert("Product has been added successfully"); location.href = "/products" </script>`)
    } catch (e) {
       console.log("error here", e)
    }

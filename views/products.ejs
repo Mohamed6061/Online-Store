@@ -32,9 +32,9 @@
                             <% products.forEach(function(product) { %>                           
                             <div class="col-lg-4 col-md-4 all des">
                                 <div class="product-item">
-                                    <a href="#"><img src= '<%= product.Image %>' ></a>
+                                    <a href="/product_details/<%= product.id %>"><img src= '<%= product.Image %>' ></a>
                                     <div class="down-content">
-                                        <a href="#">
+                                        <a href="/product_details/<%= product.id %>">
                                             <h4><%= product.name %>:</h4>
                                         </a>
                                         <h6><%= product.price %></h6>
