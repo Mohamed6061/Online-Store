@@ -1,12 +1,10 @@
-<%- include('./Partials/head.ejs') %>
-
+<%- include('./Partials/header.ejs') %>
 
   <div class="container pt-5">
 
-    <h1 class="my-4 pt-5">My Product Cart</h1>
+    <h1>My Product Cart</h1>
 
-
-
+    <% if ( status === true ) { %>
     <!-- Add more product cards here -->
     <div class="row">
       <% CartProudcts.forEach(function(CartProudct) { %>
@@ -41,11 +39,14 @@
                   <!-- <div class="col-md-6"> -->
                   <!-- </div> -->
     </div>
+    <% } else {%>
+      <h3 style="height: 30vh;">You Don't Have Orders Please Go To <a href="/products">Products Page</a></h3>
+      <%}%>
   </div>
 
   <script>
     function deleteOrder(id) {
-      const deleteReq = fetch("/cart/" + id, { method: "DELETE" })
+      const deleteReq = fetch("/cart/" + id, { method: "POST" })
         .then((response) => {
           if (response.status === 204) {
             location.reload()
@@ -62,4 +63,4 @@
         .catch((err) => console.log(err.message));
     }
   </script>
-  <%- include('./Partials/foot.ejs') %>
+  <%- include('./Partials/footer.ejs') %>

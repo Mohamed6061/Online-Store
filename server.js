@@ -10,8 +10,9 @@ const product_detailRoute = require("./src/routes/product_detail");
 const {loginRoute} = require("./src/routes/login");
 const homeRoute = require("./src/routes/home");
 const checkoutRoute = require("./src/routes/checkout");
-const cardRoute = require("./src/routes/card");
+const cardRoute = require("./src/routes/cart");
 const APIRouter = require("./src/routes/API/main");
+const session = require('express-session');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -31,16 +32,13 @@ app.use("/products", productsRoute);
 app.use("/product_details", product_detailRoute);
 app.use("/login", loginRoute);
 app.use("/home", homeRoute);
+app.use("/", homeRoute);
 app.use("/checkout", checkoutRoute);
 app.use("/cart", cardRoute);
 app.use("/api", APIRouter);
 
-app.get("/", (req, res) => {
-        res.render("home", { page_title: "Home" });
-});
-
 app.get("*", (req, res) => {
-        res.status(404).send("Page Not Found");
+        res.status(404).render("notFound" , {page_title : "Not Found"})
 });
 
 app.set("view engine", 'ejs');

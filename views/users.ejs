@@ -1,22 +1,100 @@
-<%- include('./Partials/head.ejs') %>
-<style>
-    input{
-        width:250px;
-    }
-</style>
-<h1>My page</h1>
-<div class="container">
-    <br>
-    <br>
-    <!-- <br> -->
-    <form method="post">
-        <label>Username</label><br>
-        <input type="text" name="username" value="<%= user.name %>"><br>
-        <label>Email</label><br>
-        <input type="email" name="email" value="<%= user.email %>"><br>
-        <label>Do you want to change your password ?</label><br>
-        <input type="password" name="password" >
-    </form>
-</div>
+<%- include('./Partials/header.ejs') %>
+    <style>
+        input {
+            width: 250px;
+        }
+    </style>
+    <h1>My page</h1>
+    <div class="container">
+        <br>
+        <br>
+        <!-- <br> -->
+        <form method="post">
+            <label>Username</label><br>
+            <input type="text" name="username" value="<%= user.name %>"><br>
+            <label>Email</label><br>
+            <input type="email" name="email" value="<%= user.email %>"><br>
+            <label>Do you want to change your password ?</label><br>
+            <input type="password" name="password">
+        </form>
+    </div>
 
-<%- include('./Partials/foot.ejs') %>
+
+    <!-- Add yor code above Esmail -->
+    <div class="container ">
+        <% if (role=="admin" ) {%>
+            <div class="pt-5 list-inline"></div>
+        <table class="table table-stripped ">
+                <thead>
+                    <tr>
+                        <td>id</td>
+                        <td>name</td>
+                        <td>email</td>
+                        <td>role</td>
+                        <td>Number of Orders</td>
+                        <td>Open Order</td>
+                        <td>actions</td>
+                        <td>Upgrade</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach(user=> { %>
+                        <tr>
+                            <td>
+                                <%= user.id %>
+                            </td>
+                            <td>
+                                <%= user.name %>
+                            </td>
+                            <td>
+                                <%= user.email %>
+                            </td>
+                            <td>
+                                <%= user.role %>
+                            </td>
+                            <td>
+                                <%= user.ordersNum %>
+                            </td>
+                            <td>
+                                <%= user.openOrder %>
+                            </td>
+                            <td>
+                                <button class="btn-close" onclick="deleteUser(<%= user.id %>)">Delete</button>
+                            </td>
+                            <td>
+                                <button class="btn-close" onclick="upgrade(<%= user.id %>)">Upgrade</button>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+            <% } %>
+    </div>
+
+    <script>
+        function deleteUser(id) {
+            const deleteReq = fetch("/api/users/del/" + id, { method: "POST" });
+            deleteReq
+                .then((response) => {
+                    return response.json();
+                })
+                .catch((err) => {
+                    alert("User Deleted")
+                    location.reload();
+                });
+        }
+
+        function upgrade(id) {
+            const upgrade = fetch("/api/users/upgrade/" + id, { method: "POST" });
+            upgrade
+                .then((response) => {
+                    return response.json();
+                })
+                .catch((err) => {
+                    alert("User Deleted")
+                    location.reload();
+                });
+        }
+
+    </script>
+    <%- include('./Partials/footer.ejs') %>

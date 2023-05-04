@@ -1,4 +1,4 @@
-<%- include('./Partials/head.ejs') %>
+<%- include('./Partials/header.ejs') %>
 
     <!-- Page Content -->
     <div class="page-heading products-heading header-text">
@@ -29,29 +29,50 @@
                 <div class="col-md-12">
                     <div class="filters-content">
                         <div class="row grid">
-                            <% products.forEach(function(product) { %>                           
-                            <div class="col-lg-4 col-md-4 all des">
-                                <div class="product-item">
-                                    <a href="/product_details/<%= product.id %>"><img src= '<%= product.Image %>' ></a>
-                                    <div class="down-content">
-                                        <a href="/product_details/<%= product.id %>">
-                                            <h4><%= product.name %>:</h4>
-                                        </a>
-                                        <h6><%= product.price %></h6>
-                                        <p><%= product.description %></p>
-                                        <ul class="stars">
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                        </ul>
-                                        <a href="/product_details/<%= product.id %>">View Details</a>
-                                        <span>Reviews (12)</span>
+                            <% products.forEach(function(product) { %>
+                                <div class="col-lg-4 col-md-4 all des">
+                                    <div class="product-item">
+                                        <a href="/product_details/<%= product.id %>"><img
+                                                src='<%= product.Image %>'></a>
+                                        <div class="down-content">
+                                            <a href="/product_details/<%= product.id %>">
+                                                <h4>
+                                                    <%= product.name %>:
+                                                </h4>
+                                            </a>
+                                            <h6>
+                                                <%= product.price %>
+                                            </h6>
+                                            <p>
+                                                <%= product.description %>
+                                            </p>
+                                            <ul class="stars">
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                            </ul>
+                                            <a href="/product_details/<%= product.id %>">View Details</a>
+                                            <span>Reviews (12)</span>
+
+                                            <% if (role=="admin" ) {%>
+                                                <hr>
+                                                <div class="row mb-3">
+                                                    <button type="button" onclick="deleteProduct(<%= product.id%>)"
+                                                        style="border: none;
+                                                background: black;
+                                                color: white;
+                                                border-radius: 15px;
+                                                margin: auto;
+                                                padding: 6px;
+                                                box-shadow: 0 0px 5px 2px #a7a1a1">Delete Product</button>
+                                                </div>
+                                                <% }; %>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <% }); %>
+                                <% }); %>
                         </div>
                     </div>
                 </div>
@@ -69,6 +90,52 @@
             </div>
         </div>
     </div>
+    <% if (role=="admin" ) {%>
+        <hr>
 
+        <div class="container mt-5">
+            <h2 class="mb-3">Add Product</h2>
+            <form method="post" action="/products/add">
+                <div class="form-group">
+                    <label for="productName">Product Name</label>
+                    <input type="text" class="form-control" id="productName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="5"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" class="form-control" id="price" name="price" required>
+                </div>
+                <div class="form-group">
+                    <label for="imageURL">Image URL</label>
+                    <input type="url" class="form-control" id="imageURL" name="image" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <% } %>
+            <script>
+                function deleteProduct(id) {
+                    const deleteReq = fetch("/products/" + id, { method: "DELETE" });
+                    deleteReq
+                        .then((response) => {
+                            if (response.status === 204) {
+                                location.reload()
+                                alert("Product deleted successfully");
+                            } else {
+                                return response.json();
+                            }
+                        })
+                        .then((data) => {
+                            if (data) {
+                                console.log(data.msg);
+                            }
+                        })
+                        .catch((err) => console.log(err.message));
+                }
 
-<%- include('./Partials/foot.ejs') %>
+            </script>
+
+            <%- include('./Partials/footer.ejs') %>

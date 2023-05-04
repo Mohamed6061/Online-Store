@@ -19,11 +19,12 @@
         <%= page_title %>
     </title>
     <style>
-        .footer_logo{
+        .footer_logo {
             color: white;
             margin-right: 125px;
             padding-bottom: 15px;
         }
+
         .thumbnail img {
             height: 270px;
             width: 100%;
@@ -32,28 +33,32 @@
         /* .row>div {
             height: 500px;
         } */
-        img{
-    height :270px;
-  }
-  ul li{
-    color: #444;
+        img {
+            height: 270px;
+        }
 
-  }
-  .logo{
-    width: 35px;
-    height: 30px;
-    padding-right: 10px;
-  }
-  ul li a{
-    color: #444;
-    text-decoration: none;
-    
-  }
-  .cpyryt{
-    /* margin-bottom: 200px; */
-    color: white;
-    margin-left: center;
-  }
+        ul li {
+            color: #444;
+
+        }
+
+        .logo {
+            width: 35px;
+            height: 30px;
+            padding-right: 10px;
+        }
+
+        ul li a {
+            color: #444;
+            text-decoration: none;
+
+        }
+
+        .cpyryt {
+            /* margin-bottom: 200px; */
+            color: white;
+            margin-left: center;
+        }
     </style>
 </head>
 
@@ -63,9 +68,11 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="index.html">
-                <div class="d-flex">    <img class="logo" src="https://cdn-icons-png.flaticon.com/512/662/662177.png"/>
-                    <h2 >Online <em>Clothing</em></h2>
-                </div></a>
+                    <div class="d-flex"> <img class="logo"
+                            src="https://cdn-icons-png.flaticon.com/512/662/662177.png" />
+                        <h2>Online <em>Clothing</em></h2>
+                    </div>
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -73,21 +80,35 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home
-                                <span class="sr-only">(current)</span>
+                            <a class="nav-link" href="/home">Home
                             </a>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="products.html">Our Products</a>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/products">Our Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">About Us</a>
+                            <a class="nav-link" href="/cart">My Cart</a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact Us</a>
-                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/checkout">Checkout</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <form action="/users/logout" method="get">
+                                <button type="submit" style="border-radius: 9px;
+                                        background: #f33f3f;
+                                        color: white;
+                                        margin: 11px 0 0 0;
+                                        cursor: pointer;
+                                        ">Sign Out</button>
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+    <div class="pt-4"></div>
+    <!-- <div class="pt-3"></div> -->

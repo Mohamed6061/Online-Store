@@ -1,3 +1,4 @@
+const { where } = require("sequelize");
 const { express } = require("../../index");
 const UsersRoute = express.Router();
 const { User } = require("../../models/main");
@@ -8,8 +9,8 @@ UsersRoute.get("/", (req, res) => {
 });
 
 UsersRoute.post("/", async (req, res) => {
-  const { name, password ,email } = req.body;
-
+  const { name, password ,email ,role } = req.body;
+  console.log(role)
   // Check if a user with the same username already exists
   const existingUser = await User.findOne({ where: { name } });
   const existingEmail = await User.findOne({ where: { email } });
@@ -35,10 +36,10 @@ UsersRoute.post("/", async (req, res) => {
     User.create({
       name ,
       password: hashedPassword,
-      email
+      email,
+      role
     });
-    res.status(201);
-    res.render("home", { page_title: "Home" })
+    return res.status(400).send(`<script>alert("Added succesfully, please login!");location.href = "/login"</script>` );
     
   } catch (err) {
     console.error(err);
