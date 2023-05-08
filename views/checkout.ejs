@@ -19,17 +19,14 @@
             margin: 0;
             font-family: lato;
         }
-
-        h2 {
-            margin-bottom: 0px;
-            margin-top: 25px;
-            text-align: center;
-            font-weight: 200;
-            font-size: 19px;
-            /* font-size: 1.2rem; */
+.product-name{
+    font-size: large;
+    font-weight: bold;
+}
+        .product-price {
             color: #f33f3f;
-            font-weight: 900;
-            font-size: 2.2rem;
+transform: translate(-50px,10px);
+            position: absolute;
 
         }
 
@@ -103,7 +100,7 @@
         }
 
         .half-input-table td:first-of-type {
-            border-right: 10px solid #4488dd;
+            border-right: 10px solid #f33f3f;
             width: 50%;
         }
 
@@ -137,12 +134,29 @@
             position: relative;
         }
 
+        .delivery {
+            font-weight: 400;
+            position: absolute;
+            transform: translate(300px, 8px);
+        }
+
+        .t-price {
+            /* font-size: medium; */
+            /* font-size: 20px; */
+            color: #f33f3f;
+            position: absolute;
+            transform: translate(-100px, 50px);
+        }
+
         .price {
+
             bottom: 0px;
             position: absolute;
             right: 0px;
-            color: #4488dd;
+            top: 50px;
+            color: #f33f3f;
         }
+
 
         .order-table td:first-of-type {
             width: 25%;
@@ -174,9 +188,15 @@
             width: 100%;
         }
 
+        
+        .hight {
+            height: 350px;
+            overflow: auto;
+        }
+
         .pay-btn {
             border: none;
-            background: #22b877;
+            /* background: #22b877; */
             line-height: 2em;
             border-radius: 10px;
             font-size: 19px;
@@ -203,8 +223,8 @@
             font-size: 1.3rem;
             position: absolute;
             bottom: 30px;
-            right: 27px;
-            left: 35px;
+            /* right: 40px; */
+            left: 50px;
         }
 
         .dense {
@@ -230,7 +250,7 @@
         }
 
         .credit-info {
-            background: #4488dd;
+            background: #f33f3f;
             /* height: 100%; */
             width: 50%;
             color: #eee;
@@ -331,56 +351,68 @@
 </head>
 
 <%- include('./Partials/header.ejs') %>
-<body>
-        <div class='container'>
+
+    <body>
+        <div class=' container'>
             <!-- <div class="pt-5 "></div> -->
             <% if ( status==true){%>
                 <div class='window mt-5'>
                     <div class='order-info'>
                         <div class='order-info-content'>
+                            <div>
+                                <br>
+                                <br>
+                            </div>
                             <h2>Order Summary</h2>
                             <div class='line'></div>
                             <% let total=0 %>
-                                <% orderitem.forEach(function(Oitem) { %>
-                                    <% products.forEach(function(Product) { %>
-                                        <% if (Oitem.productId===Product.id) { %>
-                                            <% total +=Product.price * Oitem.quantity%>
-                                                <table class="order-table">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td><img src="<%= Product.image %>" class="full-width"></td>
-                                                            <td>
-                                                                <h2>
-                                                                    <%= Product.name %>
-                                                                </h2>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="price">
-                                                                    <%= Oitem.quantity * Product.price %>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <% } %>
-                                                    <% }) %>
+                                <section class=" hight ">
+                                    <% orderitem.forEach(function(Oitem) { %>
+                                        <% products.forEach(function(Product) { %>
+                                            <% if (Oitem.productId===Product.id) { %>
+                                                <% total +=Product.price * Oitem.quantity%>
+                                                    <table class=" order-table">
+                                                        <tbody >
+                                                            <tr>
+                                                                <td><img src="<%= Product.image %>"
+                                                                        style="height: 120px; width: 80px ;" ></td>
+                                                                <td>
+                                                                    <span class="product-name">
+                                                                        <%= Product.name %>
+                                                                    </span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <h4 class="price product-price">
+                                                                        <%= Oitem.quantity * Product.price %>
+                                                                            <span>L.E</span>
+                                                                    </h4>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <div class='line'></div>
+                                                    <% } %>
                                                         <% }) %>
+                                                            <% }) %>
+                                </section>
 
 
-                                                            <div class='line'></div>
 
-                                                            <div class='total'>
-                                                                <span style='float:left;'>
-                                                                    <div class='thin dense'>VAT 19%</div>
-                                                                    <div class='thin dense'>Delivery</div>
-                                                                    TOTAL
-                                                                </span>
-                                                                <span style='float:right; text-align:right;'>
-                                                                    <%= total %>
-                                                                </span>
-                                                            </div>
+                                <div class='total'>
+                                    <span style='float:left;'>
+                                        <div style="width: 420px;" class='thin dense'>
+                                            Delivery
+                                            <span class="delivery "> 50L.E</span>
+                                        </div>
+                                        <br>
+                                        TOTAL
+                                    </span>
+                                    <span class="t-price" style='float:right; text-align:right;'>
+                                        <%= total +50 %><span>L.E</span>
+                                    </span>
+                                </div>
                         </div>
                     </div>
                     <div class='credit-info'>
@@ -402,14 +434,15 @@
                                     </td>
                                 </tr>
                             </table>
-                            <button onclick="COrder(<%= id %>)" class='pay-btn'>Checkout</button>
+                            <button onclick="COrder(<%= id %>)" class='pay-btn btn-danger'>Checkout</button>
 
                         </div>
 
                     </div>
                 </div>
                 <% }else {%>
-                    <h3 style="color:rgb(3, 3, 3);">You Don't Have Orders Please Go To <a href="/products">Products Page</a>
+                    <h3 style="color:rgb(3, 3, 3);">You Don't Have Orders Please Go To <a href="/products">Products
+                            Page</a>
                     </h3>
                     <%}%>
         </div>
@@ -483,6 +516,7 @@
             }
         </script>
 
-</body>
-<%- include('./Partials/footer.ejs') %> 
+    </body>
+    <%- include('./Partials/footer.ejs') %>
+
 </html>

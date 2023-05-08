@@ -27,6 +27,8 @@ UsersRoute.get("/", async (req, res) => {
                 }));
                 return orders;
             }));
+            console.log(allorders);
+
             let forders = allorederItems.filter(ele => ele.length !== 0);
 
             const allProducts = await getAll(Product);
@@ -65,7 +67,7 @@ UsersRoute.get("/", async (req, res) => {
                 })
             })
             let userInfo = await Promise.all(userInfoPromises)
-            // console.log(userInfo);
+            console.log(forders);
 
             res.render("users", { page_title: "Account", user, allorders: forders, products, users : userInfo , role: req.session.userInfo.role });
         } catch (error) {

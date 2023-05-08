@@ -1,19 +1,26 @@
 <style>
-  .product-img{
+  .product-img {
     border: solid 1px gray;
-  } 
-  .lyer2{
+  }
+
+  .lyer2 {
     position: absolute;
     color: #f33f3f;
     z-index: -1;
-    transform: translate(3px,-40px);
+    transform: translate(3px, -40px);
     /* translate: ; */
   }
-  .price{
+
+  .description {
+    height: 50px;
+    overflow: hidden;
+  }
+
+  .price {
     color: brown;
     /* margin-top: 10px; */
     position: absolute;
-  transform: translate(270px,10px);
+    transform: translate(270px, 10px);
   }
 </style>
 
@@ -49,73 +56,42 @@
   </nav>
 
   <!-- User Posts Section -->
-  <div class="" style="height: 100vh; background-image: url('/style_products/images/about-heading.jpg');">
+  <div class="" style="height: 100vh; background-image: url('/style_products/images/slide_03.jpg');">
 
   </div>
   <section class="container pt-5">
-    <h2 style="z-index: 4;">My Products</h2>
-    <h2 class="lyer2">My Products</h2>
+    <h2 style="z-index: 4;">Our Products</h2>
+    <h2 class="lyer2">Our Products</h2>
     <div class="row">
-      
-      <div class="col-md-12">
-                    <div class="filters-content">
-                        <div class="row grid">
-                            <% products.forEach(function(product) { %>                           
-                            <div class="col-lg-4 col-md-4 all des">
-                                <div class="product-item">
-                                    <a href="/product_details/<%= product.id %>"><img src= '<%= product.Image %>' ></a>
-                                    <div class="down-content">
-                                        <a href="/product_details/<%= product.id %>">
-                                            <h4><%= product.name %>:</h4>
-                                        </a>
-                                        <h6><%= product.price %></h6>
-                                        <p><%= product.description %></p>
-                                        <ul class="stars">
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                        </ul>
-                                        <a href="/product_details/<%= product.id %>">View Details</a>
-                                        <span>Reviews (12)</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <% }); %>
-                        </div>
-                    </div>
-                </div>
       <div class="col-md-12">
         <div class="filters-content">
-            <div class="row grid">
-                <% products.forEach(function(product) { %>                           
-                <div class="col-lg-4 col-md-4 all des">
-                    <div class="product-item">
-                        <a href="/product_details/<%= product.id %>"><img src= '<%= product.Image %>' ></a>
-                        <div class="down-content">
-                            <a href="/product_details/<%= product.id %>">
-                                <h4><%= product.name %>:</h4>
-                            </a>
-                            <h6><%= product.price %></h6>
-                            <p><%= product.description %></p>
-                            <ul class="stars">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                            </ul>
-                            <a href="/product_details/<%= product.id %>">View Details</a>
-                            <span>Reviews (12)</span>
-                        </div>
-                    </div>
+          <div class="row grid">
+            <% products.forEach(function(product) { %>
+              <div class="col-lg-4 col-md-4 all des">
+                <div class="product-item">
+                  <a href="/product_details/<%= product.id %>"><img src='<%= product.Image %>'></a>
+                  <div class="down-content">
+                    <a href="/product_details/<%= product.id %>">
+                      <h4>
+                        <%= product.name %>:
+                      </h4>
+                    </a>
+                    <h6>
+                      <%= product.price %>
+                    </h6>
+                    <p class="description">
+                      <%= product.description %>
+                    </p>
+                    <a href="/product_details/<%= product.id %>">View Details</a>
+                  </div>
                 </div>
-                <% }); %>
-            </div>
+              </div>
+              <% }); %>
+          </div>
         </div>
+      </div>
     </div>
-              </section>
+    </div>
+  </section>
 
-              <%- include('./Partials/footer.ejs') %>
-            
+  <%- include('./Partials/footer.ejs') %>

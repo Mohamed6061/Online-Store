@@ -1,5 +1,23 @@
 <%- include('./Partials/header.ejs') %>
 
+    <style>
+        .product-name {
+            width: 240px;
+            height: 30px;
+        }
+
+        .price {
+            color: brown;
+            /* margin-top: 10px; */
+            position: absolute;
+            transform: translate(380px, 0);
+        }
+
+        .description {
+            height: 50px;
+            overflow: hidden;
+        }
+    </style>
     <!-- Page Content -->
     <div class="page-heading products-heading header-text">
         <div class="container">
@@ -26,56 +44,34 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="filters-content">
-                        <div class="row grid">
-                            <% products.forEach(function(product) { %>
-                                <div class="col-lg-4 col-md-4 all des">
-                                    <div class="product-item">
-                                        <a href="/product_details/<%= product.id %>"><img
-                                                src='<%= product.Image %>'></a>
-                                        <div class="down-content">
-                                            <a href="/product_details/<%= product.id %>">
-                                                <h4>
-                                                    <%= product.name %>:
-                                                </h4>
-                                            </a>
-                                            <h6>
-                                                <%= product.price %>
-                                            </h6>
-                                            <p>
-                                                <%= product.description %>
-                                            </p>
-                                            <ul class="stars">
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                            <a href="/product_details/<%= product.id %>">View Details</a>
-                                            <span>Reviews (12)</span>
-
-                                            <% if (role=="admin" ) {%>
-                                                <hr>
-                                                <div class="row mb-3">
-                                                    <button type="button" onclick="deleteProduct(<%= product.id%>)"
-                                                        style="border: none;
-                                                background: black;
-                                                color: white;
-                                                border-radius: 15px;
-                                                margin: auto;
-                                                padding: 6px;
-                                                box-shadow: 0 0px 5px 2px #a7a1a1">Delete Product</button>
-                                                </div>
-                                                <% }; %>
-                                        </div>
-                                    </div>
-                                </div>
-                                <% }); %>
-                        </div>
-                    </div>
+                
+      <div class="col-md-12">
+        <div class="filters-content">
+          <div class="row grid">
+            <% products.forEach(function(product) { %>
+              <div class="col-lg-4 col-md-4 all des">
+                <div class="product-item">
+                  <a href="/product_details/<%= product.id %>"><img src='<%= product.Image %>'></a>
+                  <div class="down-content">
+                    <a href="/product_details/<%= product.id %>">
+                      <h4>
+                        <%= product.name %>:
+                      </h4>
+                    </a>
+                    <h6>
+                      <%= product.price %>
+                    </h6>
+                    <p class="description">
+                      <%= product.description %>
+                    </p>
+                    <a href="/product_details/<%= product.id %>">View Details</a>
+                  </div>
                 </div>
+              </div>
+              <% }); %>
+          </div>
+        </div>
+      </div>
                 <div class="col-md-12">
                     <ul class="pages">
                         <li><a href="#">1</a></li>

@@ -1,5 +1,10 @@
 <%- include('./Partials/header.ejs') %>
-
+<style>
+  .describe{
+    height: 50px;
+    overflow: hidden;
+  }
+</style>
   <div class="container pt-5">
 
     <h1>My Product Cart</h1>
@@ -17,7 +22,7 @@
                   <h5 class="card-title">
                     <%= product.name %>
                   </h5>
-                  <p class="card-text">
+                  <p class="card-text describe">
                     <%= product.description %>
                   </p>
                   <p class="card-text">

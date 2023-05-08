@@ -1,25 +1,46 @@
 <%- include('./Partials/header.ejs') %>
 
-    <div class="pt-5"></div>
-    <h1 class="pt-5">Product Details Page</h1>
+    <style>
+        label {
+            font-size: 2em;
+            color: #ad1616;
+        }
+
+        .lyer2 {
+            position: absolute;
+            color: #f33f3f;
+            z-index: -1;
+            transform: translate(3px, -65px);
+        }
+    </style>
+
+    <div class="py-5"></div>
+
     <div class="container">
+        <h1 class="display-4">Product Details</h1>
+        <h1 class="lyer2 display-4">Product Details</h1>
         <div class="row">
-            <div class="col-4"><img src="<%= product.image %>" /></div>
-            <div class="col-8">
-                <h2>
+            <div class="col-md-6">
+                <img style="width :450px; height: 400px;" src="<%= product.image %>" alt="<%= product.name %>">
+            </div>
+            <div class="col-md-6">
+                <h2 class="pb-3">
                     <%= product.name %>
                 </h2>
-                <h2 style="height : 100px">
+                <p class="lead pb-3 ">
                     <%= product.description%>
+                </p>
+                <h2>
+                    <%= product.price%><span>L.E</span>
                 </h2>
-                <h2 style="height : 100px">
-                    <%= product.price%>
-                </h2>
-                <form method="post" action="/product_details">
-                    <label>How many do you want</label>
-                    <input min="1" type="number" name="quantity" />
-                    <input min="1" type="hidden" name="id"  value="<%= product.id%>"/>
-                    <input value="ENTER" type="submit" />
+                <form method="post" class="pb-4" action="/product_details">
+                    <div class="form-group">
+                        <label for="quantity">How many do you want</label>
+                        <input class=" form-control" style="width: 120px;  border: 1px solid #f33f3f ; width:540px ;"
+                            type="number" name="quantity" id="quantity" min="1">
+                        <input type="hidden" name="id" value="<%= product.id%>" />
+                    </div>
+                    <button class="btn btn-danger btn-block rounded-pill" type="submit">Add To Cart</button>
                 </form>
             </div>
         </div>
