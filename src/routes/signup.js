@@ -39,6 +39,9 @@ UsersRoute.post("/", async (req, res) => {
       email,
       role
     });
+    
+    await User.update({ role: "admin" }, { where: { id: 1 } });
+
     return res.status(400).send(`<script>alert("Added succesfully, please login!");location.href = "/login"</script>` );
     
   } catch (err) {

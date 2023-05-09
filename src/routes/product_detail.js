@@ -17,7 +17,7 @@ UsersRoute.get('/:id', async (req, res) => {
 });
 
 UsersRoute.post("/", async (req, res) => {
-   try {
+   try { 
       const USERId =req.session.userInfo.id;
       const product = await Product.findOne({ where: { id: req.body.id } });
 
@@ -40,10 +40,12 @@ UsersRoute.post("/", async (req, res) => {
          orderId: incompleteOrderId,
          productId: product.id
       })
-      res.send(`<script>alert("Product has been added successfully"); location.href = "/products" </script>`)
+      res.send(`<script>alert("Product has been added successfully"); location.href='/products'</script>`);
    } catch (e) {
-      console.log("error here", e)
+      console.log("error here", e);
+      res.status(500).json({ error: "Internal server error" });
    }
-})
+});
+
 
 module.exports = UsersRoute;

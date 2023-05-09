@@ -1,138 +1,186 @@
 <%- include('./Partials/header.ejs') %>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<style>
-    input {
-        width: 250px;
-    }
-    h1 {
-        margin-top: 50px;
-    }
-    h2 {
-        font-size: 24px;
-    }
-    .card {
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-    .card img {
-        width: 100px;
-        height: 100px;
-        margin-right: 20px;
-    }
-    .table {
-        margin-top: 50px;
-    }
-    .table td, .table th {
-        vertical-align: middle;
-    }
-</style>
-<!-- <h1>My page</h1> -->
-<div class="container">
-    <br>
-    <br>
-    <% allorders.forEach(function(product) { %>
-        <div class="card mb-3" style="border: none;">
-            <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#order<%= product[0].orderId %>">View products</button>
-            <div class="collapse" id="order<%= product[0].orderId %>">
-                <% product.forEach(function(produ) { %>
-                <div class="d-flex align-items-center">
-                    <% products.forEach(function(items){ %>
-                    <% if  ( items.id == produ.productId) { %>
-                        <img src="<%= items.image %>"/>
-                        <div>
-                            <h3><%= items.name %></h3>
-                            <p class="text-muted">Price: <%= items.price %></p>
-                            <p class="text-muted">Quantity: <%= items.quantity %></p>
-                        </div>
-                    <% } %>
-                    <% }) %>
-                </div>
-                <% }) %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        input {
+            width: 250px;
+        }
+
+        h1 {
+            margin-top: 50px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        .card {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .card img {
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+        }
+
+        .table {
+            margin-top: 50px;
+        }
+
+        .table td,
+        .table th {
+            vertical-align: middle;
+        }
+    </style>
+    <!-- <h1>My page</h1> -->
+    <div class="container">
+        <div class="pt-5"></div>
+        <div class="pt-5"></div>
+        <!-- <br> -->
+        <div class="row">
+            <h2 class="col-3 h2"> User Information</h2>
+            <div class="col-9">
+                <form action="/users/updateName" method="post" class="form-inline">
+                    <div class="form-group  w-100">
+                        <label for="nameInput " class="w-25">Name</label>
+                        <input type="text" class="form-control  w-50" id="nameInput" name="name"
+                            value="<%= user.name %>" placeholder="Enter name">
+                        <button type="submit" class="btn w-25" style="background:#C82333 ; color: white;">Save</button>
+                    </div>
+                </form>
+                <div class="pt-3"></div>
+                <form action="/users/updateEmail" method="post" class="form-inline">
+                    <div class="form-group w-100">
+                        <label for="emailInput" class="w-25">Email address</label>
+                        <input type="email" class="form-control w-50" id="emailInput" name="email"
+                            value="<%= user.email %>" placeholder="Enter email">
+                        <button type="submit" class="btn w-25" style="background:#C82333 ; color: white;">Save</button>
+                    </div>
+                </form>
+                <div class="pt-3"></div>
+                <form action="/users/updatePassword" method="post" class="form-inline">
+                    <div class="form-group w-100">
+                        <label for="passwordInput" class="w-25">Password</label>
+                        <input type="password" class="form-control w-50" id="passwordInput" name="password"
+                            placeholder="Enter password">
+                        <button type="submit" class="btn w-25" style="background:#C82333 ; color: white;">Save</button>
+                    </div>
+                </form>
             </div>
         </div>
-        <% }); %>
-</div>
+        <hr>
+        <h2 class="h2 pb-3">Orders</h2>
+
+        <% let index=0 ;allorders.forEach(function(product) { ++index %>
+            <div class="card mb-3 shadow" style="border: none; background-color: #eeeeee73;">
+                <button class="btn btn-danger" type="button">Order NO.<%=index%></button>
+                <div id="order<%= product.orderId %>">
+                    <% product.forEach(function(produ) { %>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <% products.forEach(function(items){ %>
+                                <% if ( items.id == produ.productId) { %>
+                                    <div class="row pt-2 pl-3 align-items-center"">
+                                        <img src="<%= items.image %>" />
+                                        <h3>
+                                            <%= items.name %>
+                                        </h3>
+                                    </div>
+                                    <div>
+                                        <p class="text-muted">Price: <%= items.price %>
+                                        </p>
+                                        <p class="text-muted">Quantity: <%= produ.quantity %>
+                                        </p>
+                                    </div>
+                                    <% } %>
+                                        <% }) %>
+                        </div>
+                        <hr>
+                        <% }) %>
+                </div>
+            </div>
+            <% }); %>
     </div>
-    <hr>
-    <form method="post">
-        <label>Username</label>
-        <input type="text" name="username" value="<%= user.name %>" class="form-control">
-        
-        <label>Email</label>
-        <input type="email" name="email" value="<%= user.email %>" class="form-control">
-        
-        <label>Do you want to change your password?</label>
-        <input type="password" name="password" class="form-control">
-    </form>
 
-</div>
+    <div class="container">
+        <% if (role=="admin" ) {%>
+            <div class="list-inline">
+            </div>
+            <h3>All users</h3>
 
-
-<div class="container">
-    <% if (role=="admin" ) {%>
-    <div class="list-inline">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Number of Orders</th>
+                        <th>Open Order</th>
+                        <th>Actions</th>
+                        <th>Upgrade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach(function(user) { %>
+                        <tr>
+                            <td>
+                                <%= user.id %>
+                            </td>
+                            <td>
+                                <%= user.name %>
+                            </td>
+                            <td>
+                                <%= user.email %>
+                            </td>
+                            <td>
+                                <%= user.role %>
+                            </td>
+                            <td>
+                                <%= user.ordersNum %>
+                            </td>
+                            <td>
+                                <%= user.openOrder %>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger" onclick="deleteUser(<%= user.id %>)">Delete</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-success" onclick="upgrade(<%= user.id %>)">Upgrade</button>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+            <% } %>
     </div>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Number of Orders</th>
-                <th>Open Order</th>
-                <th>Actions</th>
-                <th>Upgrade</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% users.forEach(function(user) { %>
-            <tr>
-                <td><%= user.id %></td>
-                <td><%= user.name %></td>
-                <td><%= user.email %></td>
-                <td><%= user.role %></td>
-                <td><%= user.ordersNum %></td>
-                <td><%= user.openOrder %></td>
-                <td>
-                    <button class="btn btn-danger" onclick="deleteUser(<%= user.id %>)">Delete</button>
-                </td>
-                <td>
-                    <button class="btn btn-success" onclick="upgrade(<%= user.id %>)">Upgrade</button>
-                </td>
-            </tr>
-            <% }) %>
-        </tbody>
-    </table>
-    <% } %>
-</div>
 
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<script>
-    function deleteUser(id) {
-        const deleteReq = fetch("/api/users/del/" + id, { method: "POST" });
-        deleteReq
-            .then((response) => {
-                return response.json();
-            })
-            .catch((err) => {
-                alert("User Deleted")
-                location.reload();
-            });
-    }
 
-    function upgrade(id) {
-        const upgrade = fetch("/api/users/upgrade/" + id, { method: "POST" });
-        upgrade
-            .then((response) => {
-                return response.json();
-            })
-            .catch((err) => {
-                alert("User Deleted")
-                location.reload();
-            });
-    }
+    <script>
+        function deleteUser(id) {
+            const deleteReq = fetch("/api/users/del/" + id, { method: "POST" });
+            deleteReq
+                .then((response) => {
+                    return response.json();
+                })
+                .catch((err) => {
+                    alert("User Deleted")
+                    location.reload();
+                });
+        }
 
-</script>
-<%- include('./Partials/footer.ejs') %>
+        function upgrade(id) {
+            const upgrade = fetch("/api/users/upgrade/" + id, { method: "POST" });
+            upgrade
+                .then((response) => {
+                    return response.json();
+                })
+                .catch((err) => {
+                    alert("User Deleted")
+                    location.reload();
+                });
+        }
+
+    </script>
+    <%- include('./Partials/footer.ejs') %>

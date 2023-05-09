@@ -1,13 +1,12 @@
 -- cat database.sql | C:\xampp\mysql\bin\mysql.exe -uroot ==> run this command
 -- Create the database
--- Drop DATABASE online_store;
 CREATE DATABASE online_store;
 
 -- Use the database
 USE online_store;
 
 -- Create the Users table
-CREATE TABLE Users (
+CREATE TABLE IF NOT EXISTS Users (
     id INT NOT NULL AUTO_INCREMENT ,
     name VARCHAR(50) NOT NULL UNIQUE,
     email VARCHAR(100) NOT NULL UNIQUE,
@@ -17,7 +16,7 @@ CREATE TABLE Users (
 );
 
 -- Create the Products table
-CREATE TABLE Products (
+CREATE TABLE IF NOT EXISTS Products (
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     description TEXT,
@@ -27,7 +26,7 @@ CREATE TABLE Products (
 );
 
 -- Create the Orders table
-CREATE TABLE Orders (
+CREATE TABLE IF NOT EXISTS Orders (
     id INT NOT NULL AUTO_INCREMENT,
     userId INT NOT NULL,
     status VARCHAR(20) NOT NULL,
@@ -35,7 +34,7 @@ CREATE TABLE Orders (
     FOREIGN KEY (userId) REFERENCES Users(id) ON DELETE CASCADE
 );
 -- Create the Order Items table
-CREATE TABLE OrderItems (
+CREATE TABLE IF NOT EXISTS OrderItems (
     id INT NOT NULL AUTO_INCREMENT,
     orderId INT NOT NULL,
     productId INT NOT NULL,

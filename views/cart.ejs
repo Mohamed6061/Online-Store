@@ -1,60 +1,61 @@
 <%- include('./Partials/header.ejs') %>
-<style>
-  .describe{
-    height: 50px;
-    overflow: hidden;
-  }
-</style>
+  <style>
+    .describe {
+      height: 50px;
+      overflow: hidden;
+    }
+  </style>
+  <div class="pt-5"></div>
   <div class="container pt-5">
 
-    <h1>My Product Cart</h1>
+    <h1 class="h1">My Product Cart</h1>
 
-    <% if ( status === true ) { %>
-    <!-- Add more product cards here -->
-    <div class="row">
-      <% CartProudcts.forEach(function(CartProudct) { %>
-        <% Allproducts.forEach(function(product) { %>
-          <% if (CartProudct.productId===product.id) { %>
-            <div class="col-3 ">
-              <div class="card mb-4 m-1 ">
-                <img src="<%= product.image %>" class="card-img-top" alt="Product Image">
-                <div class="card-body">
-                  <h5 class="card-title">
-                    <%= product.name %>
-                  </h5>
-                  <p class="card-text describe">
-                    <%= product.description %>
-                  </p>
-                  <p class="card-text">
-                    <strong>
-                      <%= product.price %>
-                    </strong>
-                  </p>
-                  <button type="button" class="btn btn-danger"  onclick='deleteOrder(<%= product.id %>)' data-toggle="modal" data-target="#deleteProductModal1">
-                    Delete
-                  </button>
+    <% if ( status===true ) { %>
+      <hr>
+      <!-- Add more product cards here -->
+      <div class="row">
+        <% CartProudcts.forEach(function(CartProudct) { %>
+          <% Allproducts.forEach(function(product) { %>
+            <% if (CartProudct.productId===product.id) { %>
+              <div class="col-3 ">
+                <div class="card mb-4 m-1 ">
+                  <img src="<%= product.image %>" class="card-img-top" alt="Product Image">
+                  <div class="card-body">
+                    <h5 class="card-title">
+                      <%= product.name %>
+                    </h5>
+                    <p class="card-text describe">
+                      <%= product.description %>
+                    </p>
+                    <p class="card-text">
+                      <strong>
+                        <%= product.price %>
+                      </strong>
+                    </p>
+                    <button type="button" class="btn btn-danger" onclick='deleteOrder(<%= product.id %>)'
+                      data-toggle="modal" data-target="#deleteProductModal1">
+                      Delete
+                    </button>
+                  </div>
                 </div>
               </div>
-
-            </div>
-            <% } %>
-              <% }) %>
+              <% } %>
                 <% }) %>
-
-                  <!-- <div class="col-md-6"> -->
-                  <!-- </div> -->
-    </div>
-    <% } else {%>
-      <h3 style="height: 30vh;">You Don't Have Orders Please Go To <a href="/products">Products Page</a></h3>
-      <%}%>
+                  <% }) %>
+                    <!-- <div class="col-md-6"> -->
+                    <!-- </div> -->
+      </div>
+      <% } else {%>
+        <h3 style="height: 30vh;">You Don't Have Orders Please Go To <a href="/products">Products Page</a></h3>
+        <%}%>
   </div>
 
   <script>
     function deleteOrder(id) {
-      const deleteReq = fetch("/cart/" + id, { method: "POST" })
+      fetch('/cart/' + id, { method: 'DELETE' })
         .then((response) => {
           if (response.status === 204) {
-            location.reload()
+            location.reload();
             alert("Order deleted successfully");
           } else {
             return response.json();

@@ -32,6 +32,7 @@ UsersRoute.get('/', async (req, res) => {
                   };
                });
 
+               // get all products
                const products = await Product.findAll();
                var Allproducts = products.map(product => ({
                   id: product.id,
@@ -41,30 +42,50 @@ UsersRoute.get('/', async (req, res) => {
                   image: product.image
                }));
 
-               res.render('cart', { page_title: "Cart", CartProudcts, Allproducts , status : true });
+               res.render('cart', { page_title: "Cart", CartProudcts, Allproducts, status: true });
             });
          } else {
-            res.render('cart', { page_title: "Cart", status : false });
+            res.render('cart', { page_title: "Cart", status: false });
 
          }
       });
    } else {
+      // in case of not sign in
       res.redirect('/login');
    }
 });
 
-UsersRoute.post('/:id', async (req, res) => {
-   // Extract the id from the parameters sent in the request
+UsersRoute.delete('/:id', async (req, res) => {
    const id = req.params.id;
+   try {
+      const USERId = req.session.userInfo.id;
 
-   // Search for the item to be deleted using the id
-   const orderItem = await orderitems.findOne({ where: { productId: id } });
+      // get order that not completed with user id that is sign in
+      const order = await orders.findOne({
+         where: {
+            status: 'Not Complete',
+            userId: USERId
+         }
+      });
 
-   // delete the item if it exists
-   if (orderItem) {
+      // Caheck if order not found
+      if (!order) {
+         return res.status(404).json({ error: "Order not found" });
+      }
+
+      // get all product in order that not complete
+      const orderItem = await orderitems.findOne({ where: { productId: id , orderId : order.id} });
+      if (!orderItem) {
+         return res.status(404).json({ error: "Order item not found" });
+      }
+
+      // Delete orderitem
       await orderItem.destroy();
+      res.sendStatus(204);
+   } catch (err) {
+      console.log("error here", err);
+      res.status(500).json({ error: "Internal server error" });
    }
-   res.status(204).send();
 });
 
 module.exports = UsersRoute;

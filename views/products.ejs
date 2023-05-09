@@ -44,44 +44,46 @@
                         </ul>
                     </div>
                 </div>
-                
-      <div class="col-md-12">
-        <div class="filters-content">
-          <div class="row grid">
-            <% products.forEach(function(product) { %>
-              <div class="col-lg-4 col-md-4 all des">
-                <div class="product-item">
-                  <a href="/product_details/<%= product.id %>"><img src='<%= product.Image %>'></a>
-                  <div class="down-content">
-                    <a href="/product_details/<%= product.id %>">
-                      <h4>
-                        <%= product.name %>:
-                      </h4>
-                    </a>
-                    <h6>
-                      <%= product.price %>
-                    </h6>
-                    <p class="description">
-                      <%= product.description %>
-                    </p>
-                    <a href="/product_details/<%= product.id %>">View Details</a>
-                  </div>
-                </div>
-              </div>
-              <% }); %>
-          </div>
-        </div>
-      </div>
+
                 <div class="col-md-12">
-                    <ul class="pages">
-                        <li><a href="#">1</a></li>
-                        <li class="active"><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li>
-                            <a href="#"><i class="fa fa-angle-double-right"></i></a>
-                        </li>
-                    </ul>
+                    <div class="filters-content">
+                        <div class="row grid">
+                            <% products.forEach(function(product) { %>
+                                <div class="col-lg-4 col-md-4 all des">
+                                    <div class="product-item">
+                                        <a href="/product_details/<%= product.id %>"><img
+                                                src='<%= product.Image %>'></a>
+                                        <div class="down-content">
+                                            <a href="/product_details/<%= product.id %>">
+                                                <h4>
+                                                    <%= product.name %>:
+                                                </h4>
+                                            </a>
+                                            <h6>
+                                                <%= product.price %>
+                                            </h6>
+                                            <p class="description">
+                                                <%= product.description %>
+                                            </p>
+                                            <a href="/product_details/<%= product.id %>">View Details</a>
+                                        </div>
+                                        <% if (role=="admin" ) {%>
+                                            <hr>
+                                            <div class="row mb-3">
+                                                <button type="button" onclick="deleteProduct(<%= product.id%>)" style="border: none;
+                                                background: black;
+                                                color: white;
+                                                border-radius: 15px;
+                                                margin: auto;
+                                                padding: 6px;
+                                                box-shadow: 0 0px 5px 2px #a7a1a1">Delete Product</button>
+                                            </div>
+                                            <% }; %>
+                                    </div>
+                                </div>
+                                <% }); %>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -114,24 +116,20 @@
         <% } %>
             <script>
                 function deleteProduct(id) {
-                    const deleteReq = fetch("/products/" + id, { method: "DELETE" });
-                    deleteReq
-                        .then((response) => {
-                            if (response.status === 204) {
-                                location.reload()
-                                alert("Product deleted successfully");
-                            } else {
-                                return response.json();
-                            }
-                        })
-                        .then((data) => {
-                            if (data) {
-                                console.log(data.msg);
-                            }
-                        })
-                        .catch((err) => console.log(err.message));
+                    fetch('/products/' + id, {method: 'DELETE'}).then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        } else {
+                            throw new Error('Error deleting product');
+                        }
+                    }).then(data => {
+                        alert(data.success);
+                        location.reload();
+                    }).catch(error => {
+                        console.error(error);
+                        alert(error.message);
+                    });
                 }
-
             </script>
 
             <%- include('./Partials/footer.ejs') %>
