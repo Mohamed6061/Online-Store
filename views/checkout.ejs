@@ -19,13 +19,15 @@
             margin: 0;
             font-family: lato;
         }
-.product-name{
-    font-size: large;
-    font-weight: bold;
-}
+
+        .product-name {
+            font-size: large;
+            font-weight: bold;
+        }
+
         .product-price {
             color: #f33f3f;
-transform: translate(-50px,10px);
+            transform: translate(-50px, 10px);
             position: absolute;
 
         }
@@ -100,7 +102,7 @@ transform: translate(-50px,10px);
         }
 
         .half-input-table td:first-of-type {
-            border-right: 10px solid #f33f3f;
+            border-right: 10px solid #232323;
             width: 50%;
         }
 
@@ -180,7 +182,7 @@ transform: translate(-50px,10px);
         }
 
         .order-info-content {
-            width:100%; 
+            width: 100%;
             table-layout: fixed;
 
         }
@@ -189,7 +191,7 @@ transform: translate(-50px,10px);
             width: 100%;
         }
 
-        
+
         .hight {
             height: 350px;
             overflow: auto;
@@ -251,7 +253,7 @@ transform: translate(-50px,10px);
         }
 
         .credit-info {
-            background: #f33f3f;
+            background: #232323;
             /* height: 100%; */
             width: 50%;
             color: #eee;
@@ -373,11 +375,13 @@ transform: translate(-50px,10px);
                                         <% products.forEach(function(Product) { %>
                                             <% if (Oitem.productId===Product.id) { %>
                                                 <% total +=Product.price * Oitem.quantity%>
-                                                    <table class=" order-table">
-                                                        <tbody >
+                                                    <table class=" order-table" style="
+                                                    width: 100%;
+                                                ">
+                                                        <tbody>
                                                             <tr>
                                                                 <td><img src="<%= Product.image %>"
-                                                                        style="height: 120px; width: 80px ;" ></td>
+                                                                        style="height: 120px; width: 80px ;"></td>
                                                                 <td>
                                                                     <span class="product-name">
                                                                         <%= Product.name %>

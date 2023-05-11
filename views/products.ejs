@@ -116,7 +116,7 @@
         <% } %>
             <script>
                 function deleteProduct(id) {
-                    fetch('/products/' + id, {method: 'DELETE'}).then(response => {
+                    fetch( `/products/${id}`, {method: 'DELETE'}).then(response => {
                         if (response.ok) {
                             return response.json();
                         } else {
