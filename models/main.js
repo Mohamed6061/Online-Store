@@ -78,7 +78,7 @@ Product.sync({ alter: true }) // creates the table if it doesn't exist
         console.error('Error creating Product table:', error);
     });
 
-////////
+
 const orderitems = sequelize.define('orderitems', {
     id: {
         type: DataTypes.INTEGER,
