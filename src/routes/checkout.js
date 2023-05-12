@@ -4,7 +4,7 @@ const { orders, orderitems, Product } = require("../../models/main");
 
 UsersRoute.get("/", async (req, res) => {
   if (req.session && req.session.userInfo) {
-    const USERId = req.session.userInfo.id;;
+    const USERId = req.session.userInfo.id;
 
     const order = await orders.findOne(
       { where: { status: 'Not Complete', userId: USERId } });
